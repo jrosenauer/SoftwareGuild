@@ -35,12 +35,12 @@ PRIMARY KEY (SuperID, OrganizationID),
 constraint fk_SuperOrganization_SuperHero
 FOREIGN KEY (SuperID)
 references SuperHero.SuperHero (SuperID)
-on delete no action on update no action,
+on delete cascade on update no action,
 
 constraint fk_SuperOrganization_Organization
 FOREIGN KEY (OrganizationID)
 references SuperHero.Organization (OrganizationID)
-on delete no action on update no action);
+on delete cascade on update no action);
 
 CREATE TABLE SuperHero.Sighting (
 SightingID INT NOT NULL AUTO_INCREMENT,
@@ -51,7 +51,7 @@ PRIMARY KEY (SightingID),
 constraint  fk_Sighting_Location
 FOREIGN KEY (LocationID)
 references SuperHero.Location (LocationID)
-on delete no action on update no action);
+on delete cascade on update no action);
 
 CREATE TABLE SuperHero.SuperSighting (
 SuperID INT,
@@ -61,9 +61,9 @@ PRIMARY KEY (SuperID, SightingID),
 constraint fk_SuperSighting_SuperHero
 FOREIGN KEY (SuperID)
 references SuperHero.SuperHero (SuperID)
-on delete no action on update no action,
+on delete cascade on update no action,
 
 constraint fk_SuperSighting_Sighting
 FOREIGN KEY (SightingID)
 references SuperHero.Sighting (SightingID)
-on delete no action on update no action);
+on delete cascade on update no action);

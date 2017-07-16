@@ -44,17 +44,17 @@ public class LocationDaoTest {
             }
         }
 
-        List<Location> locationList = locationDao.getAllLocations();
-        if (locationList != null) {
-            for (Location currentLocation : locationList) {
-                locationDao.deleteLocation(currentLocation.getLocationID());
-            }
-        }
-
         List<Super> superList = superDao.getAllSupers();
         if (superList != null) {
             for (Super currentSuper : superList) {
                 superDao.deleteSuper(currentSuper.getSuperID());
+            }
+        }
+
+        List<Location> locationList = locationDao.getAllLocations();
+        if (locationList != null) {
+            for (Location currentLocation : locationList) {
+                locationDao.deleteLocation(currentLocation.getLocationID());
             }
         }
     }
@@ -157,7 +157,7 @@ public class LocationDaoTest {
         List< Super> supers = new ArrayList<>();
         location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
-        
+
         Location location2 = new Location();
         location2.setLocationName("Minneapolis");
         location2.setLocationDescription("Around the block from downtown Minneapolis");
@@ -167,15 +167,22 @@ public class LocationDaoTest {
         List< Super> supers2 = new ArrayList<>();
         location.setSupers(supers);
         Location locationAdded2 = locationDao.addLocation(location);
-        
-        List < Location > allLocations = locationDao.getAllLocations();
+
+        List< Location> allLocations = locationDao.getAllLocations();
 
         assertEquals(2, locationDao.getAllLocations().size());
     }
-    
-    /*
+
     @Test
     public void GetAllLocationsBySuper() {
+        
+        Super superPerson = new Super();
+        superPerson.setSuperName("Franny2");
+        superPerson.setSuperDescription("Loves to fly2");
+        superPerson.setSuperPower("flying2");
+        Super superAdded = superDao.addSuper(superPerson);
+        List< Super> supers = new ArrayList<>();
+        supers.add(superAdded);
 
         Location location = new Location();
         location.setLocationName("Minneapolis");
@@ -183,41 +190,23 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        
-        Super superPerson = new Super();
-        superPerson.setSuperName("Franny");
-        superPerson.setSuperDescription("Loves to fly");
-        superPerson.setSuperPower("flying");
-        
-        Super superPerson2 = new Super();
-        superPerson2.setSuperName("Franny2");
-        superPerson2.setSuperDescription("Loves to fly2");
-        superPerson2.setSuperPower("flying2");
-        
-        List< Super> supers = new ArrayList<>();
-        
-        supers.add(superPerson);
-        supers.add(superPerson2);
-        
-        superDao.addSuper(superPerson);
-        superDao.addSuper(superPerson2);
-        
         location.setSupers(supers);
+
         Location locationAdded = locationDao.addLocation(location);
 
-        //Super super1 = new Super();
-        //super1.setSuperID(super1.getSuperID());
-
-        location.setLocationID(locationAdded.locationID);
-
-        locationDao.addLocation(location);
+        Location location2 = new Location();
+        location2.setLocationName("Minneapolis2");
+        location2.setLocationDescription("Around the block from downtown Minneapolis2");
+        location2.setLocationAddress("500 East Grant Street, Minneapolis, MN 554042");
+        location2.setLocationLongitude(-90.268233);
+        location2.setLocationLatitude(54.970184);
+        location2.setSupers(supers);
+        Location locationAdded2 = locationDao.addLocation(location2);
 
         //Location fromDao = locationDao.getLocationByID(super1.getSuperID());
         //assertEquals(fromDao.getLocationID(), super1.getSuperID());
-
         List< Location> locationListFiltered = locationDao.getAllLocationsBySuper(superPerson.getSuperID());
-        assertEquals(locationListFiltered, locationAdded);
+        assertEquals(2, locationListFiltered.size());
     }
-     */
 
 }

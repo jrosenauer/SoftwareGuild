@@ -78,7 +78,7 @@ public class SuperDaoImpl implements SuperDao {
     }
 
     @Override
-    public List<Super> getAllSupersByLocation(Location locationID) {
+    public List<Super> getAllSupersByLocation(int locationID) {
         List< Super> superList = jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SUPERS_BY_LOCATION, new SuperMapper(), locationID);
         return superList;
     }

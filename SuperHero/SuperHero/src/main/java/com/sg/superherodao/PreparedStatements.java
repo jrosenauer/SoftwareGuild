@@ -33,15 +33,15 @@ public class PreparedStatements {
             = "SELECT * from Location";
 
     public static final String SQL_GET_ALL_LOCATIONS_BY_SUPER
-            = "SELECT * from Location loc "
+            = "SELECT distinct loc.* from Location loc "
             + "JOIN Sighting sight on sight.LocationID = loc.LocationID "
             + "JOIN SuperSighting ss on ss.SightingID = ss.SightingID "
             + "WHERE ss.SuperID = ?";
 
     public static final String SQL_SELECT_SUPERS_BY_LOCATION
             = "SELECT * FROM SuperHero sh "
-            + "JOIN SuperSighting ss on ss.SuperID = sh.SuperID"
-            + "JOIN Sighting sight on sight.SightingID = ss.SightingID"
+            + "JOIN SuperSighting ss on ss.SuperID = sh.SuperID "
+            + "JOIN Sighting sight on sight.SightingID = ss.SightingID "
             + "WHERE sight.LocationID = ?";
 
     //Organization//           
@@ -88,7 +88,7 @@ public class PreparedStatements {
             + "from Sighting sight "
 //            + "join SuperSighting ss on ss.SightingID = sight.SightingID "
 //            + "join SuperHero sh on sh.SuperID = ss.SuperID "
-            + "join Location loc on loc.LocationID = sight.LocationID "
+            + "left join Location loc on loc.LocationID = sight.LocationID "
             + "where sight.SightingDate = ?";
 
     public static final String SQL_SELECT_ALL_SIGHTINGS_BY_LOCATION
@@ -128,17 +128,17 @@ public class PreparedStatements {
             = "SELECT * from SuperHero";
 
     public static final String SQL_SELECT_ALL_SUPERS_BY_LOCATION
-            = "SELECT sh.* loc.* from Location loc "
-            + "join Sighting sight on sight.LocationID = loc.LocationID"
+            = "SELECT distinct sh.* from Location loc "
+            + "join Sighting sight on sight.LocationID = loc.LocationID "
             + "join SuperSighting ss on ss.SightingID = sight.SightingID "
-            + "join SuperHero sh on sh.SuperID = ss.SuperID"
+            + "join SuperHero sh on sh.SuperID = ss.SuperID "
             + "where loc.LocationID = ?";
 
     //Bridge Tables
     public static final String SQL_INSERT_SUPERORGANIZATION
             = "Insert into SuperOrganization "
-            + "(SuperID, OrganizationID "
-            + "(values (?, ?)";
+            + "(SuperID, OrganizationID) "
+            + "values (?, ?)";
     
     public static final String SQL_DELETE_SUPERS_IN_ORGANIZATION
             = "Delete from SuperOrganization where SuperID = ?";
@@ -154,9 +154,9 @@ public class PreparedStatements {
             + "where so.OrganizationID = ?";
     
     public static final String SQL_SELECT_ALL_SUPERS_BY_ORGANIZATION
-            = "SELECT sh.* from SuperOrganization "
-            + "join Organization org on org.OrganizatinID = org.OrganizationID"
-            + "join SuperHero sh on sh.SuperID = sh.SuperID"
+            = "SELECT distinct sh.* from SuperOrganization "
+            + "join Organization org on org.OrganizationID = org.OrganizationID "
+            + "join SuperHero sh on sh.SuperID = sh.SuperID "
             + "where SuperOrganization.OrganizationID = ?";
 
     //Supers at Sighting

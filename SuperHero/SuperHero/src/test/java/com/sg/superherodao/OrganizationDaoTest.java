@@ -149,7 +149,7 @@ public class OrganizationDaoTest {
         assertEquals(fromDao2.getOrganizationPhone(), organization2.getOrganizationPhone());
         assertEquals(fromDao2.getOrganizationEmail(), organization2.getOrganizationEmail());
 
-        assertNotNull(organizationDao.getOrganizationByID(organization2.getOrganizationID()));
+        //assertNotNull(organizationDao.getOrganizationByID(organization2.getOrganizationID()));
     }
 
     @Test

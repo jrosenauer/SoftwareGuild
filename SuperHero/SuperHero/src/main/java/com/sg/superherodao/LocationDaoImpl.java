@@ -42,6 +42,7 @@ public class LocationDaoImpl implements LocationDao {
 
         int locationID = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         location.setLocationID(locationID);
+        this.insertSuperLocation(location);
         return location;
     }
 
@@ -84,16 +85,21 @@ public class LocationDaoImpl implements LocationDao {
 
     private Location insertSuperLocation(Location location) {
         final int locationID = location.getLocationID();
+        java.util.Date utilDate = new java.util.Date();
+        jdbcTemplate.update(PreparedStatements.SQL_INSERT_SIGHTING, new java.sql.Date(utilDate.getTime()), locationID);  
+        int sightingID = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        
         final List< Super> supers = location.getSupers();
 
         for (Super currentSuper : supers) {
-            jdbcTemplate.update(PreparedStatements.SQL_SELECT_ALL_SUPERS_BY_LOCATION, currentSuper.getSuperID(), location.getLocationID());
+            
+            jdbcTemplate.update(PreparedStatements.SQL_INSERT_SUPERSIGHTINGS, currentSuper.getSuperID(), sightingID);
         }
         return location;
     }
-    
-    private List < Super > selectSupersAtLocation(Location location) {
+
+    private List< Super> selectSupersAtLocation(Location location) {
         return jdbcTemplate.query(PreparedStatements.SQL_SELECT_SUPERS_BY_LOCATION, new SuperMapper(), location.getLocationID());
     }
-    
+
 }

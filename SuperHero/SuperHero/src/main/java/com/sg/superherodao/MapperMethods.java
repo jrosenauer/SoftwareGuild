@@ -71,10 +71,10 @@ public class MapperMethods {
             sight.setSightingID(rs.getInt("SightingID"));
             sight.setSightingDate(rs.getDate("SightingDate").toLocalDate());
             sight.setLocationID(rs.getInt("LocationID"));
-            supers.setSuperID(rs.getInt("SuperID"));
-            supers.setSuperName(rs.getString("SuperName"));
-            supers.setSuperDescription(rs.getString("SuperDescription"));
-            supers.setSuperPower(rs.getString("SuperPower"));
+//            supers.setSuperID(rs.getInt("SuperID"));
+//            supers.setSuperName(rs.getString("SuperName"));
+//            supers.setSuperDescription(rs.getString("SuperDescription"));
+//            supers.setSuperPower(rs.getString("SuperPower"));
             loc.setLocationID(rs.getInt("LocationID"));
             loc.setLocationName(rs.getString("LocationName"));
             loc.setLocationDescription(rs.getString("LocationDescription"));

@@ -26,4 +26,6 @@ public interface LocationDao {
     public List < Location > getAllLocations();
     
     public List < Location > getAllLocationsBySuper(int superID);
+    
+
 }

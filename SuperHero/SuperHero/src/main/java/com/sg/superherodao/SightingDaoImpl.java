@@ -70,7 +70,7 @@ public class SightingDaoImpl implements SightingDao {
 
     @Override
     public List<Sighting> getAllSightingsByDate(LocalDate date) {
-        List< Sighting> sightingList = jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SIGHTINGS_BY_DATE, new SightingSuperLocationMapper(), date);
+        List< Sighting> sightingList = jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SIGHTINGS_BY_DATE, new SightingSuperLocationMapper(), date.toString());
         return sightingList;
     }
 }

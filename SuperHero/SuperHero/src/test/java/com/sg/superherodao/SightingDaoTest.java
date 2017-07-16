@@ -142,12 +142,16 @@ public class SightingDaoTest {
         sightingDao.addSighting(sighting);
 
         Sighting fromDao = sightingDao.getSightingByID(sighting.getSightingID());
+        
+        fromDao.setSightingDate(dt2);
 
-        sightingDao.updateSighting(sighting);
+        sightingDao.updateSighting(fromDao);
+        
+        Sighting fromDao2 = sightingDao.getSightingByID(fromDao.getSightingID());
 
-        List<Sighting> newSighting = sightingDao.getAllSightingsByDate(dt2);
+        //List<Sighting> newSighting = sightingDao.getAllSightingsByDate(dt2);
 
-        assertNotEquals(dt, dt2);
+        assertEquals(fromDao2.getSightingDate(), dt2);
     }
 
     @Test
@@ -196,16 +200,13 @@ public class SightingDaoTest {
         location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
-        Sighting sighting = new Sighting();
-        sighting.setSightingDate(dt);
-
-        sighting.setLocationID(locationAdded.getLocationID());
-
-        sighting.setSupers(supers);
-        sightingDao.addSighting(sighting);
-
-        LocalDate dt2 = LocalDate.of(2016, 06, 16);
-
+        //Sighting sighting = new Sighting();
+        //sighting.setSightingDate(dt);
+//        sighting.setLocationID(locationAdded.getLocationID());
+//
+//        sighting.setSupers(supers);
+//        sightingDao.addSighting(sighting);
+        //LocalDate dt2 = LocalDate.of(2016, 06, 16);
         Location location2 = new Location();
         location2.setLocationName("Annapolis");
         location2.setLocationDescription("Around the block from downtown Indianapolis");
@@ -216,20 +217,16 @@ public class SightingDaoTest {
         location2.setSupers(supers2);
         Location locationAdded2 = locationDao.addLocation(location2);
 
-        Sighting sighting2 = new Sighting();
-        sighting2.setSightingDate(dt2);
-
-        sighting2.setLocationID(locationAdded2.getLocationID());
-
-        sighting2.setSupers(supers2);
-        sightingDao.addSighting(sighting2);
-
+//        Sighting sighting2 = new Sighting();
+//        sighting2.setSightingDate(dt2);
+        //sighting2.setLocationID(locationAdded2.getLocationID());
+//        sighting2.setSupers(supers2);
+//        sightingDao.addSighting(sighting2);
         List<Sighting> allSightings = sightingDao.getAllSightings();
 
         assertEquals(2, sightingDao.getAllSightings().size());
     }
 
-    /*
     @Test
     public void GetAllSightingsByDate() {
 
@@ -244,7 +241,7 @@ public class SightingDaoTest {
         //List< Super> supers = new ArrayList<>();
         //location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
-               
+
         Sighting sighting = new Sighting();
         sighting.setSightingDate(dt);
 
@@ -265,8 +262,9 @@ public class SightingDaoTest {
         location2.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location2.setLocationLongitude(-93.268233);
         location2.setLocationLatitude(44.970184);
-        List< Super> supers2 = new ArrayList<>();
-        location2.setSupers(supers2);
+//        List< Super> supers2 = new ArrayList<>();
+//        supers2.add(super);
+//        location2.setSupers(supers2);
         Location locationAdded2 = locationDao.addLocation(location2);
 
         Sighting sighting2 = new Sighting();
@@ -274,9 +272,9 @@ public class SightingDaoTest {
 
         sighting2.setLocationID(locationAdded2.getLocationID());
 
-        sighting2.setSupers(supers2);
+        //sighting2.setSupers(supers2);
         sightingDao.addSighting(sighting2);
-        
+
         Sighting fromDao2 = sightingDao.getSightingByID(sighting2.getSightingID());
         assertEquals(fromDao2.getSightingDate(), sighting2.getSightingDate());
         assertEquals(fromDao2.getLocation(), sighting2.getLocation());
@@ -284,5 +282,5 @@ public class SightingDaoTest {
         List< Sighting> sightingListFiltered = sightingDao.getAllSightingsByDate(dt2);
         assertEquals(1, sightingListFiltered.size());
     }
-     */
+
 }

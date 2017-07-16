@@ -28,5 +28,5 @@ public interface SuperDao {
 
     public List< Super> getAllSupersByOrganization(int organizationID);
 
-    public List< Super> getAllSupersByLocation(Location locationID);
+    public List< Super> getAllSupersByLocation(int locationID);
 }
