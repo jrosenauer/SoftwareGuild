@@ -90,8 +90,8 @@ public class SuperDaoTest {
 //        List< Organization> organizations = new ArrayList<>();
 //        organizations.add(organization);
 //        superPerson.setOrganizations(organizations);
-        List< Sighting> sightings = new ArrayList<>();
-        superPerson.setSightings(sightings);
+//        List< Sighting> sightings = new ArrayList<>();
+//        superPerson.setSightings(sightings);
         Super superAdded = superDao.addSuper(superPerson);
 
         Super fromDao = superDao.getSuperByID(superPerson.getSuperID());
@@ -109,8 +109,8 @@ public class SuperDaoTest {
         superPerson.setSuperPower("flying");
 //        List< Organization> organizations = new ArrayList<>();
 //        superPerson.setOrganizations(organizations);
-        List< Sighting> sightings = new ArrayList<>();
-        superPerson.setSightings(sightings);
+//        List< Sighting> sightings = new ArrayList<>();
+//        superPerson.setSightings(sightings);
         Super superAdded = superDao.addSuper(superPerson);
 
         Super fromDao = superDao.getSuperByID(superPerson.getSuperID());
@@ -134,8 +134,8 @@ public class SuperDaoTest {
         superPerson.setSuperPower("flying");
 //        List< Organization> organizations = new ArrayList<>();
 //        superPerson.setOrganizations(organizations);
-        List< Sighting> sightings = new ArrayList<>();
-        superPerson.setSightings(sightings);
+//        List< Sighting> sightings = new ArrayList<>();
+//        superPerson.setSightings(sightings);
         Super superAdded = superDao.addSuper(superPerson);
 
         superAdded.setSuperName("Jessica");
@@ -156,8 +156,8 @@ public class SuperDaoTest {
         superPerson.setSuperPower("flying");
 //        List< Organization> organizations = new ArrayList<>();
 //        superPerson.setOrganizations(organizations);
-        List< Sighting> sightings = new ArrayList<>();
-        superPerson.setSightings(sightings);
+//        List< Sighting> sightings = new ArrayList<>();
+//        superPerson.setSightings(sightings);
         Super superAdded = superDao.addSuper(superPerson);
 
         Super fromDao = superDao.getSuperByID(superPerson.getSuperID());
@@ -175,8 +175,8 @@ public class SuperDaoTest {
         superPerson.setSuperDescription("Loves to fly");
         superPerson.setSuperPower("flying");
 
-        List< Sighting> sightings = new ArrayList<>();
-        superPerson.setSightings(sightings);
+//        List< Sighting> sightings = new ArrayList<>();
+//        superPerson.setSightings(sightings);
         Super superAdded = superDao.addSuper(superPerson);
 
         Super superPerson2 = new Super();
@@ -184,8 +184,8 @@ public class SuperDaoTest {
         superPerson2.setSuperDescription("Loves to fly2");
         superPerson2.setSuperPower("flying2");
 
-        List< Sighting> sightings2 = new ArrayList<>();
-        superPerson2.setSightings(sightings);
+//        List< Sighting> sightings2 = new ArrayList<>();
+//        superPerson2.setSightings(sightings);
         Super superAdded2 = superDao.addSuper(superPerson2);
 
         List< Super> allSupers = superDao.getAllSupers();
@@ -265,8 +265,22 @@ public class SuperDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        location.setSupers(supers);
+        //location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
+
+        Sighting sighting = new Sighting();
+        sighting.setLocationID(location.getLocationID());
+        sighting.setLocation(location);
+        sighting.setSightingDate(LocalDate.now());
+        sighting.setSupers(supers);
+        sightingDao.addSighting(sighting);
+
+        Sighting sighting2 = new Sighting();
+        sighting2.setLocationID(location.getLocationID());
+        sighting2.setLocation(location);
+        sighting2.setSightingDate(LocalDate.now());
+        sighting2.setSupers(supers);
+        sightingDao.addSighting(sighting2);
 
         Super fromDao = superDao.getSuperByID(superAdded.getSuperID());
         List< Super> superListFiltered = superDao.getAllSupersByLocation(locationAdded.getLocationID());

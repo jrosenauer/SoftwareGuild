@@ -20,3 +20,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/DVD_Library/target/
+/Rock_Paper_Scissors+Lizard_Spock/target/
+/SuperHero/SuperHero/target/
+/Vending_Machine/nbproject/
+/Vending_Machine/target/
+/Vending_Machine-Spring/target/
+/Flooring_Mastery/FlooringMastery/target/
+/Vending_Machine_Web_App/nbproject/private/

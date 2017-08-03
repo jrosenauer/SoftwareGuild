@@ -1,0 +1,4 @@
+
+2017-06-07T13:59:38.097 : sufficientFunds: [Item: Beanie Babies |Price: 6.50 |Inventory: 3, Item: Butterfly Clips |Price: 3.67 |Inventory: 13, Item: Backstreet Boys CD |Price: 17.98 |Inventory: 1, Item: Mom Jeans |Price: 46.75 |Inventory: 6, Item: Big Hair |Price: 85.99 |Inventory: 2]210
+2017-06-07T14:00:21.628 : sufficientFunds: [Item: Beanie Babies |Price: 6.50 |Inventory: 0, Item: Butterfly Clips |Price: 3.67 |Inventory: 13, Item: Backstreet Boys CD |Price: 17.98 |Inventory: 0, Item: Mom Jeans |Price: 46.75 |Inventory: 6, Item: Big Hair |Price: 85.99 |Inventory: 2]04
+2017-06-07T14:00:21.735 : ItemInventory: [Item: Beanie Babies |Price: 6.50 |Inventory: 0, Item: Butterfly Clips |Price: 3.67 |Inventory: 13, Item: Backstreet Boys CD |Price: 17.98 |Inventory: 0, Item: Mom Jeans |Price: 46.75 |Inventory: 6, Item: Big Hair |Price: 85.99 |Inventory: 2]0

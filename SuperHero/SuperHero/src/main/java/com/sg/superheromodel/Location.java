@@ -7,6 +7,7 @@ package com.sg.superheromodel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -20,13 +21,20 @@ public class Location {
     public String locationAddress;
     public double locationLatitude;
     public double locationLongitude;
-    public List< Super> supers = new ArrayList<>();
+    //public List< Super> supers = new ArrayList<>();
 
     /**
      * @return the locationID
      */
     public int getLocationID() {
         return locationID;
+    }
+    
+    public Location() {
+}
+    
+    public Location(String locationName) {
+        this.locationName = locationName;
     }
 
     /**
@@ -106,17 +114,50 @@ public class Location {
         this.locationLongitude = locationLongitude;
     }
 
-    /**
-     * @return the supers
-     */
-    public List< Super> getSupers() {
-        return supers;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + this.locationID;
+        hash = 61 * hash + Objects.hashCode(this.locationName);
+        hash = 61 * hash + Objects.hashCode(this.locationDescription);
+        hash = 61 * hash + Objects.hashCode(this.locationAddress);
+        hash = 61 * hash + (int) (Double.doubleToLongBits(this.locationLatitude) ^ (Double.doubleToLongBits(this.locationLatitude) >>> 32));
+        hash = 61 * hash + (int) (Double.doubleToLongBits(this.locationLongitude) ^ (Double.doubleToLongBits(this.locationLongitude) >>> 32));
+        return hash;
     }
 
-    /**
-     * @param supers the supers to set
-     */
-    public void setSupers(List< Super> supers) {
-        this.supers = supers;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        if (this.locationID != other.locationID) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.locationLatitude) != Double.doubleToLongBits(other.locationLatitude)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.locationLongitude) != Double.doubleToLongBits(other.locationLongitude)) {
+            return false;
+        }
+        if (!Objects.equals(this.locationName, other.locationName)) {
+            return false;
+        }
+        if (!Objects.equals(this.locationDescription, other.locationDescription)) {
+            return false;
+        }
+        if (!Objects.equals(this.locationAddress, other.locationAddress)) {
+            return false;
+        }
+        return true;
     }
+    
+    
 }

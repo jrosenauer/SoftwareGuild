@@ -8,6 +8,7 @@ package com.sg.superherodao;
 import com.sg.superheromodel.Location;
 import com.sg.superheromodel.Sighting;
 import com.sg.superheromodel.Super;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -67,8 +68,8 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Location fromDao = locationDao.getLocationByID(location.getLocationID());
@@ -87,8 +88,8 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Location fromDao = locationDao.getLocationByID(location.getLocationID());
@@ -109,8 +110,8 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         locationAdded.setLocationName("Lava Land");
@@ -132,8 +133,8 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Location fromDao = locationDao.getLocationByID(location.getLocationID());
@@ -154,8 +155,8 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Location location2 = new Location();
@@ -164,8 +165,8 @@ public class LocationDaoTest {
         location2.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location2.setLocationLongitude(-93.268233);
         location2.setLocationLatitude(44.970184);
-        List< Super> supers2 = new ArrayList<>();
-        location.setSupers(supers);
+//        List< Super> supers2 = new ArrayList<>();
+//        location.setSupers(supers);
         Location locationAdded2 = locationDao.addLocation(location);
 
         List< Location> allLocations = locationDao.getAllLocations();
@@ -190,7 +191,7 @@ public class LocationDaoTest {
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        location.setSupers(supers);
+        //location.setSupers(supers);
 
         Location locationAdded = locationDao.addLocation(location);
 
@@ -200,11 +201,25 @@ public class LocationDaoTest {
         location2.setLocationAddress("500 East Grant Street, Minneapolis, MN 554042");
         location2.setLocationLongitude(-90.268233);
         location2.setLocationLatitude(54.970184);
-        location2.setSupers(supers);
+        //location2.setSupers(supers);
         Location locationAdded2 = locationDao.addLocation(location2);
 
         //Location fromDao = locationDao.getLocationByID(super1.getSuperID());
         //assertEquals(fromDao.getLocationID(), super1.getSuperID());
+        Sighting sighting = new Sighting();
+        sighting.setLocationID(location.getLocationID());
+        sighting.setLocation(location);
+        sighting.setSightingDate(LocalDate.now());
+        sighting.setSupers(supers);
+        sightingDao.addSighting(sighting);
+        
+        Sighting sighting2 = new Sighting();
+        sighting2.setLocationID(location2.getLocationID());
+        sighting2.setLocation(location2);
+        sighting2.setSightingDate(LocalDate.now());
+        sighting2.setSupers(supers);
+        sightingDao.addSighting(sighting2);
+      
         List< Location> locationListFiltered = locationDao.getAllLocationsBySuper(superPerson.getSuperID());
         assertEquals(2, locationListFiltered.size());
     }

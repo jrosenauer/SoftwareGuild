@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vending Machine</title>
+        <link href="css/home.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>Vending Machine</h1>
+            <hr/>
+
+            <ul class="list-group" id="errorMessages"></ul>
+
+            <div class="row">
+                <!All of the items in a row for 3 rows in 3 squares to make 9>
+                <div id="productRows" class="col-md-9"></div>
+
+                <!--Right side of VM below>-->
+                <div id="rightColumn" class="col-md-3">
+
+                    <h3>Total $ In</h3>
+                    <form class="form-horizontal" role="form" id="insertedAmount">
+
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+                                <input type="text" class="form" id="money-input"/>
+                            </div>
+                        </div>  
+
+                        <div class="form-group">
+                            <div class="center add-money-div">
+                                <span class="add-money-span">
+                                    <button type="button" id="dollar-button" class="btn btn-default add-money">
+                                        Add Dollar
+                                    </button>
+                                </span>
+                                <span class="add-money-span">
+                                    <button type="button" id="quarter-button" class="btn btn-default add-money">
+                                        Add Quarter
+                                    </button>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="center add-money-div">
+                                    <span class="add-money-span">
+                                        <button type="button" id="dime-button" class="btn btn-default add-money">
+                                            Add Dime
+                                        </button>
+                                    </span>
+                                    <span class="add-money-span">
+                                        <button type="button" id="nickel-button" class="btn btn-default add-money">
+                                            Add Nickel
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr/>
+
+                    <h3>Messages</h3>
+                    <form class="form-horizontal" id="machineMessage">
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+                                <input type="text" class="form" id="message-output"/>
+                                <div class="vending-message">
+                                </div>
+                                <label for="vending-machine" class="col-md-2">
+                                    Item:</label>
+
+                                <div class="col-md-10">
+                                    <input type="text" class="form" id="item-output"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="center">
+                                    <button type="button" id="purchase-button" class="btn btn-default">
+                                        Make Purchase
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr/>
+
+                    <h3>Change</h3>
+                    <form class="form-horizontal" id="changeAmount">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form" id="change-return" size=35 />
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="change-button" class="btn btn-default">
+                                    Change Return
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/home.js"></script>
+    </body>
+</html>

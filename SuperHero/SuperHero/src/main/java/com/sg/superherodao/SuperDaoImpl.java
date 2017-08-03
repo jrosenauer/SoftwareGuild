@@ -8,6 +8,7 @@ package com.sg.superherodao;
 import com.sg.superherodao.MapperMethods.SuperMapper;
 import com.sg.superheromodel.Location;
 import com.sg.superheromodel.Organization;
+import com.sg.superheromodel.Sighting;
 import com.sg.superheromodel.Super;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -60,7 +61,9 @@ public class SuperDaoImpl implements SuperDao {
     @Override
     public Super getSuperByID(int superID) {
         try {
-            return jdbcTemplate.queryForObject(PreparedStatements.SQL_SELECT_SUPER_BY_ID, new SuperMapper(), superID);
+            Super supers = jdbcTemplate.queryForObject(PreparedStatements.SQL_SELECT_SUPER_BY_ID, new SuperMapper(), superID);
+
+            return supers;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -68,7 +71,8 @@ public class SuperDaoImpl implements SuperDao {
 
     @Override
     public List<Super> getAllSupers() {
-        return jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SUPERS, new SuperMapper());
+        List<Super> supers = jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SUPERS, new SuperMapper());
+        return supers;
     }
 
     @Override
@@ -82,17 +86,12 @@ public class SuperDaoImpl implements SuperDao {
         List< Super> superList = jdbcTemplate.query(PreparedStatements.SQL_SELECT_ALL_SUPERS_BY_LOCATION, new SuperMapper(), locationID);
         return superList;
     }
-/*
-    private Super insertOrganizationSuper(Super superhero) {
 
-    }
-*/
-
-    private List<Super> findSuperLocations(Super superhero) {
-        return jdbcTemplate.query(PreparedStatements.SQL_SELECT_LOCATION_BY_ID, new SuperMapper(), superhero.getLocations());
+    private List<Super> findSuperLocations(Location location) {
+        return jdbcTemplate.query(PreparedStatements.SQL_SELECT_SUPERS_BY_LOCATION, new SuperMapper(), location.getLocationID());
     }
 
-    private List< Super> findSuperSighting(Super superhero) {
-        return jdbcTemplate.query(PreparedStatements.SQL_SELECT_SIGHTING_BY_ID, new SuperMapper(), superhero.getSightings());
+    private List< Super> findSuperSighting(Sighting sighting) {
+        return jdbcTemplate.query(PreparedStatements.SQL_INSERT_SUPERSIGHTINGS, new SuperMapper(), sighting.getSuperID());
     }
 }

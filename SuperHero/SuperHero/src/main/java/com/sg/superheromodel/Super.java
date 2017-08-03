@@ -5,9 +5,6 @@
  */
 package com.sg.superheromodel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author apprentice
@@ -17,11 +14,15 @@ public class Super {
     private int superID;
     private String superName;
     private String superDescription;
-    private String superPower;
-    private List< Integer> organizationID;
-    //private List< Organization> organizations = new ArrayList<>();
-    private List< Location> locations = new ArrayList<>();
-    private List< Sighting> sightings = new ArrayList<>();
+   private String superPower;
+
+   public Super() {
+       
+   }
+   
+   public Super(String superName) {
+       this.superName = superName;
+   }
 
     /**
      * @return the superID
@@ -79,45 +80,4 @@ public class Super {
         this.superPower = superPower;
     }
 
-    /**
-     * @return the organizationID
-     */
-    public List< Integer> getOrganizationID() {
-        return organizationID;
-    }
-
-    /**
-     * @param organizationID the organizationID to set
-     */
-    public void setOrganizationID(List< Integer> organizationID) {
-        this.organizationID = organizationID;
-    }
-
-    /**
-     * @return the locations
-     */
-    public List< Location> getLocations() {
-        return locations;
-    }
-
-    /**
-     * @param locations the locations to set
-     */
-    public void setLocations(List< Location> locations) {
-        this.locations = locations;
-    }
-
-    /**
-     * @return the sightings
-     */
-    public List< Sighting> getSightings() {
-        return sightings;
-    }
-
-    /**
-     * @param sightings the sightings to set
-     */
-    public void setSightings(List< Sighting> sightings) {
-        this.sightings = sightings;
-    }
 }

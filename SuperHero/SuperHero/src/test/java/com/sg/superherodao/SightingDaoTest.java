@@ -62,21 +62,27 @@ public class SightingDaoTest {
 
         LocalDate dt = LocalDate.of(2017, 07, 15);
 
+        Super superPerson = new Super();
+        superPerson.setSuperName("Franny2");
+        superPerson.setSuperDescription("Loves to fly2");
+        superPerson.setSuperPower("flying2");
+        Super superAdded = superDao.addSuper(superPerson);
+        List< Super> supers = new ArrayList<>();
+        supers.add(superAdded);
+
         Location location = new Location();
         location.setLocationName("Minneapolis");
         location.setLocationDescription("Around the block from downtown Minneapolis");
         location.setLocationAddress("500 East Grant Street, Minneapolis, MN 55404");
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
-        List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+
         Location locationAdded = locationDao.addLocation(location);
 
         Sighting sighting = new Sighting();
-        sighting.setSightingDate(dt);
-
         sighting.setLocationID(locationAdded.getLocationID());
-
+        sighting.setLocation(locationAdded);
+        sighting.setSightingDate(LocalDate.now());
         sighting.setSupers(supers);
         sightingDao.addSighting(sighting);
 
@@ -97,7 +103,7 @@ public class SightingDaoTest {
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
         List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+//        location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Sighting sighting = new Sighting();
@@ -130,7 +136,7 @@ public class SightingDaoTest {
         location.setLocationLongitude(-75.48394);
         location.setLocationLatitude(48.96482);
         List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+        //location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Sighting sighting = new Sighting();
@@ -142,15 +148,14 @@ public class SightingDaoTest {
         sightingDao.addSighting(sighting);
 
         Sighting fromDao = sightingDao.getSightingByID(sighting.getSightingID());
-        
+
         fromDao.setSightingDate(dt2);
 
         sightingDao.updateSighting(fromDao);
-        
+
         Sighting fromDao2 = sightingDao.getSightingByID(fromDao.getSightingID());
 
         //List<Sighting> newSighting = sightingDao.getAllSightingsByDate(dt2);
-
         assertEquals(fromDao2.getSightingDate(), dt2);
     }
 
@@ -166,7 +171,7 @@ public class SightingDaoTest {
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
         List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+        //location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
         Sighting sighting = new Sighting();
@@ -190,6 +195,11 @@ public class SightingDaoTest {
 
         LocalDate dt = LocalDate.of(2017, 07, 15);
 
+        Super superPerson = new Super();
+        superPerson.setSuperName("Franny");
+        superPerson.setSuperDescription("Loves to fly");
+        superPerson.setSuperPower("flying");
+
         Location location = new Location();
         location.setLocationName("Minneapolis");
         location.setLocationDescription("Around the block from downtown Minneapolis");
@@ -197,16 +207,9 @@ public class SightingDaoTest {
         location.setLocationLongitude(-93.268233);
         location.setLocationLatitude(44.970184);
         List< Super> supers = new ArrayList<>();
-        location.setSupers(supers);
+        //location.setSupers(supers);
         Location locationAdded = locationDao.addLocation(location);
 
-        //Sighting sighting = new Sighting();
-        //sighting.setSightingDate(dt);
-//        sighting.setLocationID(locationAdded.getLocationID());
-//
-//        sighting.setSupers(supers);
-//        sightingDao.addSighting(sighting);
-        //LocalDate dt2 = LocalDate.of(2016, 06, 16);
         Location location2 = new Location();
         location2.setLocationName("Annapolis");
         location2.setLocationDescription("Around the block from downtown Indianapolis");
@@ -214,14 +217,23 @@ public class SightingDaoTest {
         location2.setLocationLongitude(-93.268233);
         location2.setLocationLatitude(44.970184);
         List< Super> supers2 = new ArrayList<>();
-        location2.setSupers(supers2);
+        //location2.setSupers(supers2);
         Location locationAdded2 = locationDao.addLocation(location2);
 
-//        Sighting sighting2 = new Sighting();
-//        sighting2.setSightingDate(dt2);
-        //sighting2.setLocationID(locationAdded2.getLocationID());
-//        sighting2.setSupers(supers2);
-//        sightingDao.addSighting(sighting2);
+        Sighting sighting = new Sighting();
+        sighting.setLocationID(location.getLocationID());
+        sighting.setLocation(location);
+        sighting.setSightingDate(LocalDate.now());
+        sighting.setSupers(supers);
+        sightingDao.addSighting(sighting);
+
+        Sighting sighting2 = new Sighting();
+        sighting2.setLocationID(location2.getLocationID());
+        sighting2.setLocation(location2);
+        sighting2.setSightingDate(LocalDate.now());
+        sighting2.setSupers(supers);
+        sightingDao.addSighting(sighting2);
+
         List<Sighting> allSightings = sightingDao.getAllSightings();
 
         assertEquals(2, sightingDao.getAllSightings().size());
@@ -244,7 +256,7 @@ public class SightingDaoTest {
 
         Sighting sighting = new Sighting();
         sighting.setSightingDate(dt);
-
+        sighting.setLocation(locationAdded);
         sighting.setLocationID(locationAdded.getLocationID());
 
         //sighting.setSupers(supers);
@@ -269,6 +281,8 @@ public class SightingDaoTest {
 
         Sighting sighting2 = new Sighting();
         sighting2.setSightingDate(dt2);
+        
+        sighting2.setLocation(locationAdded2);
 
         sighting2.setLocationID(locationAdded2.getLocationID());
 

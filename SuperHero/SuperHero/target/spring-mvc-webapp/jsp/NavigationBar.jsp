@@ -3,23 +3,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<header>
     <div class="container">
         <div class="row col-md-12">
-            <div class="col-md-7">
-                <h1 class="Name" role="presentation"><a href="${pageContext.request.contextPath}/">The Hero Education Relationship Organization</a></h1>
-                <hr/>
+            <div class="col-md-10">
+                <h1 class="navbar" role="presentation">The Hero Education Relationship Organization</h1>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <ul class="nav nav-tabs">
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Sighting</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Superhero</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Location</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Organization</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/">Home</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sighting</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySuperPage">Superhero</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organization</a></li>
                 </ul>
             </div>
         </div>
     </div>
-</html>
+</header>
 

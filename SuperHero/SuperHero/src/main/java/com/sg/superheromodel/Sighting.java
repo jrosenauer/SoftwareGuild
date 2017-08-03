@@ -20,7 +20,7 @@ public class Sighting {
     private int locationID;
     private List< Integer> superID;
     private Location location;
-    private List< Super> supers = new ArrayList<>();
+    private List<Super> supers = new ArrayList<>();
 
     /**
      * @return the sightingID

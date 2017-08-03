@@ -42,7 +42,6 @@ public class LocationDaoImpl implements LocationDao {
 
         int locationID = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         location.setLocationID(locationID);
-        this.insertSuperLocation(location);
         return location;
     }
 
@@ -66,7 +65,8 @@ public class LocationDaoImpl implements LocationDao {
     @Override
     public Location getLocationByID(int locationID) {
         try {
-            return jdbcTemplate.queryForObject(PreparedStatements.SQL_SELECT_LOCATION_BY_ID, new LocationMapper(), locationID);
+            Location location = jdbcTemplate.queryForObject(PreparedStatements.SQL_SELECT_LOCATION_BY_ID, new LocationMapper(), locationID);
+            return location;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -74,7 +74,8 @@ public class LocationDaoImpl implements LocationDao {
 
     @Override
     public List<Location> getAllLocations() {
-        return jdbcTemplate.query(PreparedStatements.SQL_GET_ALL_LOCATIONS, new LocationMapper());
+        List<Location> locationList = jdbcTemplate.query(PreparedStatements.SQL_GET_ALL_LOCATIONS, new LocationMapper());
+        return locationList;
     }
 
     @Override
@@ -83,23 +84,9 @@ public class LocationDaoImpl implements LocationDao {
         return locationList;
     }
 
-    private Location insertSuperLocation(Location location) {
-        final int locationID = location.getLocationID();
-        java.util.Date utilDate = new java.util.Date();
-        jdbcTemplate.update(PreparedStatements.SQL_INSERT_SIGHTING, new java.sql.Date(utilDate.getTime()), locationID);  
-        int sightingID = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        
-        final List< Super> supers = location.getSupers();
-
-        for (Super currentSuper : supers) {
-            
-            jdbcTemplate.update(PreparedStatements.SQL_INSERT_SUPERSIGHTINGS, currentSuper.getSuperID(), sightingID);
-        }
-        return location;
-    }
-
     private List< Super> selectSupersAtLocation(Location location) {
-        return jdbcTemplate.query(PreparedStatements.SQL_SELECT_SUPERS_BY_LOCATION, new SuperMapper(), location.getLocationID());
+        List< Super> superList = jdbcTemplate.query(PreparedStatements.SQL_SELECT_SUPERS_BY_LOCATION, new SuperMapper(), location.getLocationID());
+        return superList;
     }
 
 }

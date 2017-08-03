@@ -110,7 +110,7 @@ public class PreparedStatements {
     //Supers//
     public static final String SQL_INSERT_SUPER
             = "insert into SuperHero "
-            + "(superName, SuperDescription, SuperPower) "
+            + "(SuperName, SuperDescription, SuperPower) "
             + "values (?, ?, ?)";
 
     public static final String SQL_DELETE_SUPER
@@ -177,4 +177,17 @@ public class PreparedStatements {
             = "select * from SuperHero sh "
             + "join SuperSighting ss on ss.SuperID = sh.SuperID "
             + "where ss.SightingID = ?";
+    
+    public static final String SQL_SELECT_TEN_SIGHTINGS
+            = "select Sighting.SightingDate, Location.LocationName, SuperHero.SuperName from Sighting "
+            + "inner join SuperSighting on Sighting.SightingID = SuperSighting.SightingID "
+            + "inner join Location on Sighting.LocationID = Location.LocationID "
+            + "inner join SuperHero on SuperSighting.SuperID = SuperHero.SuperID "
+            + "order by SightingDate desc "
+            + "limit 10";
+    
+    public static final String SQL_UPDATE_SUPER_SIGHTING
+            = "update SuperSighting set SuperID = ? "
+            + "where SightingID = ?";
+
 }

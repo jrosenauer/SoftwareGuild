@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.add-money-div {
+    margin-bottom:  2%
+}
+
+.add-money-span {
+    margin-right: 2%;
+    margin-left: 2%;    
+}
+
+.center {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form-group {
+    text-align: center;
+}
